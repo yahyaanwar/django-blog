@@ -1,0 +1,40 @@
+{% extends 'base_layout.html' %}
+
+{% block title %}
+hello from /user
+{% endblock title %}
+
+{% block content %}
+<h1>hello from /user</h1>
+{% if user.is_authenticated %}
+<pre>you have username : {{ user.username }}</pre>
+
+
+<div style="display: flex;">
+    {% if user.is_superuser %}
+    <a href="{% url 'index' %}admin/">
+        <button>Open admin page</button>
+    </a>
+    <span style="margin: 0 10px;">
+        or
+    </span>
+    {% endif %}
+
+    <a href="{% url 'user:signout' %}">
+        <button>Logout</button>
+    </a>
+</div>
+{% else %}
+<div style="display: flex;">
+    <a href="{% url 'user:signin' %}">
+        <button>Login</button>
+    </a>
+    <span style="margin: 0 10px;">
+        or
+    </span>
+    <a href="{% url 'user:signup'%}">
+        <button>Sign up</button>
+    </a>
+</div>
+{% endif %}
+{% endblock content %}
