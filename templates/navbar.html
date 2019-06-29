@@ -1,0 +1,23 @@
+{% load static from staticfiles %}
+
+<nav style="display: flex; align-items: center;">
+    <a href="{% url 'index' %}">
+        <img src="{% static 'img/logo.svg' %}" alt="Dev Kids" style="width: 50px; height: 50px; border-radius: 5px;">
+    </a>
+    <a href="{% url 'index' %}">
+        <strong>DEV KIDS</strong>
+    </a>
+    <span style="flex-grow: 1;"></span>
+    {% if user.is_authenticated %}
+    <a href="{% url 'user:signout' %}">
+        <button>Logout</button>
+    </a>
+    {% else %}
+    <a href="{% url 'user:signin' %}">
+        <button>Login</button>
+    </a>
+    <a href="{% url 'user:signup' %}">
+        <button>Signup</button>
+    </a>
+    {% endif %}
+</nav>

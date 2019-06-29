@@ -26,5 +26,9 @@ form label, form input[type=submit] {
     margin-top: 20px;
 }
 
+nav > * {
+    margin: 0 10px;
+}
+
 
 
