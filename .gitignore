@@ -5,3 +5,4 @@ staticfiles
 .vscode
 db.sqlite3
 media/*
+*/migrations/*
