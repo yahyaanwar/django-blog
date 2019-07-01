@@ -7,23 +7,15 @@ Blog List
 {% block content %}
 <h1>Blog List</h1>
 <ul>
+    {% for post in post_list %}
     <li>
-        <a href="slug/">
-            <h3> judul1 - 
-                <small>01-01-2019</small>
-            </h3>
+        <a href="{{ post.slug }}/">
+            <h3> {{ post.title }}</h3>
         </a>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni, fugit!</p>
+        <small>{{ post.create_at|date:"d M Y - P" }}</small>
+        <p>{{ post.content }}</p>
         
     </li>
-    <li>
-        <a href="slug/">
-            <h3> judul2 - 
-                <small>02-01-2019</small>
-            </h3>
-        </a>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni, fugit!</p>
-        
-    </li>
+    {% endfor %}
 </ul>
 {% endblock content %}

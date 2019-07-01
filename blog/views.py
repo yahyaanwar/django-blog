@@ -1,7 +1,11 @@
 from django.shortcuts import render
 
-def index(request):
-    return render(request, 'blog/index.html')
+from . models import Post
 
-def post_detail(request):
-    return render(request, 'blog/post_detail.html')
+def index(request):
+    post_list = Post.objects.order_by('create_at').all()
+    return render(request, 'blog/index.html', {'post_list':post_list})
+
+def post_detail(request,slug):
+    post = Post.objects.get(slug=slug)
+    return render(request, 'blog/post_detail.html',{'post':post})
