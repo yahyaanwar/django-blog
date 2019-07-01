@@ -1,0 +1,21 @@
+{% extends 'base_layout.html' %}
+
+{% block title %}
+Blog List
+{% endblock title %}
+
+{% block content %}
+<h1>Blog List</h1>
+<ul>
+    {% for post in post_list %}
+    <li>
+        <a href="{{ post.slug }}/">
+            <h3> {{ post.title }}</h3>
+        </a>
+        <small>{{ post.create_at|date:"d M Y - P" }}</small>
+        <p>{{ post.content }}</p>
+        
+    </li>
+    {% endfor %}
+</ul>
+{% endblock content %}

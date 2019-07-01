@@ -1,0 +1,11 @@
+{% extends 'base_layout.html' %}
+
+{% block title %}
+    {{post.title}}
+{% endblock title %}
+
+{% block content %}
+    <h1>{{post.title}}</h1>
+    <span>{{post.create_at}}</span>
+    <p>{{post.content}}</p>
+{% endblock content %}
