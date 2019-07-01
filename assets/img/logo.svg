@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" width="501.9" height="501.9">
+  <defs>
+    <filter id="g" color-interpolation-filters="sRGB" inkscape:label="Color Shift">
+      <feColorMatrix result="color1" type="hueRotate" values="340"/>
+      <feColorMatrix result="color2" type="saturate" values="1"/>
+    </filter>
+    <linearGradient id="h" x1="-161.4" x2="-104.6" y1="73.7" y2="73.7" gradientTransform="matrix(1.01116 0 0 1.01116 67.2 123)" gradientUnits="userSpaceOnUse" inkscape:collect="always" xlink:href="#a"/>
+    <linearGradient id="a" inkscape:collect="always">
+      <stop offset="0" stop-color="maroon"/>
+      <stop offset="1" stop-color="red"/>
+    </linearGradient>
+    <linearGradient id="f" x1="-112" x2="-176.1" y1="78.7" y2="78.7" gradientTransform="matrix(3.77953 0 0 3.77953 708.6 -76.8)" gradientUnits="userSpaceOnUse" inkscape:collect="always" xlink:href="#b"/>
+    <linearGradient id="b" inkscape:collect="always">
+      <stop offset="0" stop-color="maroon"/>
+      <stop offset="1" stop-color="red"/>
+    </linearGradient>
+    <filter id="e" width="1.1" height="1.1" x="0" y="0" color-interpolation-filters="sRGB" inkscape:collect="always">
+      <feGaussianBlur stdDeviation="5" inkscape:collect="always"/>
+    </filter>
+    <linearGradient id="d" x1="-36.6" x2="91.4" y1="52.1" y2="52.1" gradientTransform="matrix(3.77953 0 0 3.77953 148.5 23)" gradientUnits="userSpaceOnUse" inkscape:collect="always" xlink:href="#c"/>
+    <linearGradient id="c" inkscape:collect="always">
+      <stop offset="0"/>
+      <stop offset="1" stop-color="#333"/>
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview bordercolor="#666666" borderopacity="1" gridtolerance="10" guidetolerance="10" objecttolerance="10" pagecolor="#ffffff" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-height="480" inkscape:window-width="640"/>
+  <inkscape:clipboard style="font-variant-east_asian:normal" fill="url(#d)" fill-opacity="1" stroke="none" stroke-dashoffset="0" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="4" stroke-opacity="1" stroke-width="6.1" max="41.193627,577.68824" min="-460.74921,75.745398" opacity="1" paint-order="markers stroke fill" vector-effect="none"/>
+  <path inkscape:label="bg_dk" style="line-height:1.25" fill="url(#d)" d="M0 0h501.9v501.9H0z" font-family="sans-serif" font-size="104.5" font-weight="400" letter-spacing="0" paint-order="markers stroke fill" word-spacing="0"/>
+  <path inkscape:label="shadow_dk" style="line-height:1.25;-inkscape-font-specification:'sans-serif Bold'" fill-opacity=".5" d="M57.2 86.7v271.7h110c25.9 0 48.9-5.5 69-16.6 20.1-11 35.7-27 46.6-47.8 7.3-13.8 12.1-29 14.6-45.8l86.2 110.2h67.1L325.2 201.6l116-114.9H375L292.3 170a109.6 109.6 0 0 0-30.5-48.6c-25-23.1-60.5-34.7-106.2-34.7z" filter="url(#e)" font-family="sans-serif" font-weight="700" letter-spacing="0" word-spacing="0" inkscape:connector-curvature="0"/>
+  <path fill="url(#f)" d="M43.2 86.7v271.7h110c25.9 0 48.9-5.5 69-16.6 20.1-11 35.7-27 46.6-47.8 7.3-13.8 12.1-29 14.6-45.8l86.2 110.2h67.1L311.2 201.6l116-114.9H361L278.3 170a109.6 109.6 0 0 0-30.5-48.6c-25-23.1-60.5-34.7-106.2-34.7zm56.9 44h40.3c28.1 0 49.8 7.7 65 23.1 15.1 15.3 22.7 37.6 22.7 66.7 0 29-7.2 51.8-21.6 68.7a72.7 72.7 0 0 1-58.2 25.2h-48.2z" filter="url(#g)" font-family="sans-serif" font-weight="700" letter-spacing="0" word-spacing="0" inkscape:connector-curvature="0" inkscape:label="outer_dk" style="line-height:1.25;-inkscape-font-specification:'sans-serif Bold'"/>
+  <path fill="url(#h)" d="M-95.6 178.5v49.1h12.9c6.5 0 11.7-2.2 15.6-6.7a27.3 27.3 0 0 0 5.7-18.4c0-7.8-2-13.8-6-17.9-4.1-4-9.9-6.1-17.4-6.1z" filter="url(#g)" font-family="sans-serif" font-weight="700" letter-spacing="0" transform="matrix(3.77953 0 0 3.77953 460.7 -544.8)" inkscape:connector-curvature="0" inkscape:label="inner_dk" style="line-height:1.25;-inkscape-font-specification:'sans-serif Bold'" word-spacing="0" sodipodi:nodetypes="ccssscsc"/>
+  <text inkscape:label="text_dk" style="line-height:1.25" x="-82.6" y="256" fill="#fff" stroke-width=".7" filter="url(#g)" font-family="sans-serif" font-size="10.6" font-weight="400" letter-spacing="0" transform="matrix(3.77953 0 0 3.77953 460.7 -544.8)" word-spacing="0">
+    <tspan x="-82.6" y="256" font-weight="700" sodipodi:role="line" style="-inkscape-font-specification:'sans-serif Bold'">DEV KIDS</tspan>
+  </text>
+</svg>
