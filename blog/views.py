@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.template.defaultfilters import slugify
 
 from . models import Post
+from . forms import PostForm
+from user . models import CustomUser
 
 def index(request):
     post_list = Post.objects.order_by('create_at').all()
@@ -24,3 +28,14 @@ def post_detail(request,slug):
         'prev_slug': prev_slug, 
         'next_slug': next_slug
     })
+
+@login_required
+def create(request):
+    post_form = PostForm(request.POST or None)
+    if request.method == 'POST':
+        if post_form.is_valid():
+            post = post_form.save(commit=False)
+            post.user = request.user
+            post.save()
+            return redirect('blog:index')
+    return render(request, 'blog/create.html',{'form':post_form})

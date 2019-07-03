@@ -1,0 +1,13 @@
+{% extends 'base_layout.html' %}
+
+{% block title %}
+    Create New Post
+{% endblock title %}
+
+{% block content %}
+<form action="{% url 'blog:create' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Create">
+</form>
+{% endblock content %}
