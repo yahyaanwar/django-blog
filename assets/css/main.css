@@ -1,5 +1,10 @@
+body {
+    background: #ddd!important;
+}
+
 .content {
     padding: 0 15%;
+    min-height: 80vh;
 }
 
 form .helptext {

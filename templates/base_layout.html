@@ -8,17 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}Dev kids blogs{% endblock title %}</title>
-    <link rel="stylesheet" href="{% static 'css/main.css'%}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/css/font-awesome.min.css' %}">
 </head>
 
 <body>
     {% include 'navbar.html' %}
-    <div class="content">
-        {% block content %}
-        <pre>Content empty</pre>
-        {% endblock content %}
+    <div class="container my-5 py-5 bg-white">
+        <div class="content">
+            {% block content %}
+            <pre>Content empty</pre>
+            {% endblock content %}
+        </div>
     </div>
+    <script src="{% static 'lib/js/jquery.min.js' %}"/>
+    <script src="{% static 'lib/js/bootstrap.min.js' %}"/>
+    <script src="{% static 'js/script.js' %}"/>
 </body>
-<script src="{% static 'lib/js/jquery.min.js' %}"></script>
-<script src="{% static 'js/script.js' %}"></script>
+
 </html>
