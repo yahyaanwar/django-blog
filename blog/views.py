@@ -35,7 +35,7 @@ def create(request):
     if request.method == 'POST':
         if post_form.is_valid():
             post = post_form.save(commit=False)
-            post.user = request.user
+            post.user_id = request.user
             post.save()
             return redirect('blog:index')
     return render(request, 'blog/create.html',{'form':post_form})

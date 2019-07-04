@@ -12,7 +12,7 @@
             <button>Back</button>
         </a>
     </div>
-    <span>author : {{post.user.username}} | {{ post.create_at|date:"d M Y - P" }}</span>
+    <span>author : {{post.user_id.username}} | {{ post.create_at|date:"d M, Y, P" }}</span>
     <p>{{post.content}}</p>
     <div style="display: flex;">
     {% if prev_slug %}
