@@ -5,7 +5,13 @@
 {% endblock title %}
 
 {% block content %}
-    <h1>{{post.title}}</h1>
+    <div style="display: flex; align-items: center;">
+        <h1>{{post.title}}</h1>
+        <span style="flex-grow: 1;"></span>
+        <a href="{% url 'blog:post_list' %}">
+            <button>Back</button>
+        </a>
+    </div>
     <span>{{post.create_at}}</span>
     <p>{{post.content}}</p>
 {% endblock content %}
