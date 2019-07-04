@@ -8,4 +8,19 @@ def index(request):
 
 def post_detail(request,slug):
     post = Post.objects.get(slug=slug)
-    return render(request, 'blog/post_detail.html',{'post':post})
+
+    try:
+        prev_slug = post.get_previous_by_update_at().slug
+    except Post.DoesNotExist:
+        prev_slug = False
+
+    try:
+        next_slug = post.get_next_by_update_at().slug
+    except Post.DoesNotExist:
+        next_slug = False
+
+    return render(request, 'blog/post_detail.html',{
+        'post':post, 
+        'prev_slug': prev_slug, 
+        'next_slug': next_slug
+    })
