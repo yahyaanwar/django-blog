@@ -5,21 +5,24 @@ Blog List
 {% endblock title %}
 
 {% block content %}
-<h1>Blog List</h1>
-{% if user.is_authenticated %}
-<a href="{% url 'blog:create' %}">
-        <button>Create Post</button>
-</a>
-{% endif %}
-<ul>
+<div style="display: flex; align-items: center;">
+    <h1>Blog List</h1>
+    <span style="flex-grow: 1;"></span>
+    {% if user.is_authenticated %}
+    <a href="{% url 'blog:create' %}">
+        <button class="btn">Create Post</button>
+    </a>
+    {% endif %}
+</div>
+<ul class="list-group">
     {% for post in post_list %}
-    <li>
+    <li class="list-group-item my-2">
         <a href="{{ post.slug }}/">
             <h3> {{ post.title }}</h3>
         </a>
         <small>author : {{post.user_id.username}} | {{ post.create_at|date:"d M, Y, P" }}</small>
         <p>{{ post.content }}</p>
-        
+
     </li>
     {% endfor %}
 </ul>
