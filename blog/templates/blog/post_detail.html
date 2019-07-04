@@ -14,4 +14,13 @@
     </div>
     <span>{{post.create_at}}</span>
     <p>{{post.content}}</p>
+    <div style="display: flex;">
+    {% if prev_slug %}
+        <a href="{% url 'blog:post_detail' slug=prev_slug %}">Previous Post</a>
+    {% endif %}
+    <span style="flex-grow: 1;"></span>
+    {% if next_slug %}
+        <a href="{% url 'blog:post_detail' slug=next_slug %}">Next Post</a>
+    {% endif %}
+    </div>
 {% endblock content %}
