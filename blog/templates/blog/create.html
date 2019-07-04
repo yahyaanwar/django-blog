@@ -11,4 +11,8 @@
     {{ form|crispy }}
     <input class="btn btn-primary" type="submit" value="Create">
 </form>
+<br>
+<a href="{% url 'blog:index' %}">
+    <button>Back</button>
+</a>
 {% endblock content %}
