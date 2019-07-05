@@ -12,9 +12,26 @@ $(document).ready(function () {
     $('.btnDeletePost').click(function () {
         var title = $(this).attr('title')
         var url = $(this).attr('url')
-        if (confirm('Apakah anda yakin akan menghapus Post '+title+'?')) {
-            window.location.replace(url)
-        }
+        showWarning({
+            title: 'Delete Post',
+            text: `Are you sure to delete ${title}`,
+            confirm_text: 'Yes, delete it!',
+            cancel_text: 'No, cancel!',
+            confirm: {
+                title: 'Deleted!',
+                text: `Your post with title ${title} has been deleted.`,
+                action() {
+                    window.location.replace(url);
+                }
+            },
+            cancel: {
+                title: 'Cancelled',
+                text: 'Your post is safe :)',
+                action() {
+
+                }
+            },
+        });
     })
 })
 
@@ -23,4 +40,40 @@ function convertToSlug(text) {
         .toLowerCase()
         .replace(/ /g, '-')
         .replace(/[^\w-]+/g, '');
+}
+
+function showWarning(vals) {
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger mr-3'
+        },
+        buttonsStyling: false,
+    })
+
+    swalWithBootstrapButtons.fire({
+        title: vals.title || 'Warning',
+        text: vals.text || 'Are you sure?',
+        type: vals.type || 'warning',
+        showCancelButton: true,
+        confirmButtonText: vals.confirm_text || 'Yes, do it!',
+        cancelButtonText: vals.cancel_text || 'No, cancel!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.value) {
+            vals.confirm.action && vals.confirm.action()
+            swalWithBootstrapButtons.fire(
+                vals.confirm.title || 'Done!',
+                vals.confirm.text || '',
+                vals.confirm.type || 'success'
+            )
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            vals.cancel.action && vals.cancel.action()
+            swalWithBootstrapButtons.fire(
+                vals.cancel.title || 'Cancelled',
+                vals.cancel.text || '',
+                vals.cancel.type || 'error'
+            )
+        }
+    })
 }
