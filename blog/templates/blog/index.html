@@ -20,9 +20,9 @@ Blog List
         <a href="{% url 'blog:post_detail' post.slug %}">
             <h3> {{ post.title }}</h3>
         </a>
-        <span>author : {{post.user_id.username}} | {{ post.create_at|date:"d M, Y, P" }}</span>
+        <span>author : {{post.user_id}} | {{ post.create_at|date:"d M, Y, P" }}</span>
         <p>{{ post.content }}</p>
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and user == post.user_id %}
             <a href="{% url 'blog:update' post.slug %}" type="button" class="btn btn-warning btn-sm">EDIT</a>
             <button type="button" class="btn btn-danger btn-sm btnDeletePost" title="{{post.title}}" url="{% url 'blog:delete' post.slug %}">DELETE</button>
         {% endif %}

@@ -43,20 +43,27 @@ def create(request):
 @login_required
 def update(request,slug):
     post = get_object_or_404(Post,slug=slug)
-    post_form = PostForm(request.POST or None, instance= post)
-    if request.method == 'POST':
-        if post_form.is_valid():
-            post_form.save()
-            return redirect('blog:post_detail', request.POST.get('slug'))
-    content = {
-        'form':post_form,
-        'post':post,
-        'back':(request.META.get('HTTP_REFERER'), reverse('blog:index'))[request.META.get('HTTP_REFERER') == None] 
-    }
+    url_referer = (request.META.get('HTTP_REFERER'), reverse('blog:index'))[request.META.get('HTTP_REFERER') == None]
+    if request.user == post.user_id:
+        post_form = PostForm(request.POST or None, instance= post)
+        if request.method == 'POST':
+            if post_form.is_valid():
+                post_form.save()
+                return redirect('blog:post_detail', request.POST.get('slug'))
+        content = {
+            'form':post_form,
+            'post':post,
+            'back':url_referer
+        }
+    else:
+        return redirect('blog:post_detail', slug)
     return render(request, 'blog/update.html',content)
 
 @login_required
 def delete(request,slug):
     post = get_object_or_404(Post,slug=slug)
-    post.delete()
+    if request.user == post.user_id:
+        post.delete()
+    else:
+        return redirect('blog:post_detail', slug)
     return redirect('blog:index')
