@@ -17,20 +17,16 @@
             <li class="nav-item {% if request.resolver_match.namespace == 'blog' %}active{% endif %}">
                 <a class="nav-link" href="{% url 'blog:index' %}">Blog</a>
             </li>
-            <li class="nav-item dropdown d-md-none {% if request.resolver_match.namespace == 'user' %}active{% endif %}">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarUser" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    User
+            <li class="nav-item dropdown d-md-none {% if request.resolver_match.namespace == 'user' %}active{% endif %}">   
+                <a class="nav-link" href="{% url 'user:index' %}" title="{{ user.email }}">
+                    <i class="fa fa-user-circle"></i> 
+                    <strong>{{ user.username }}</strong>
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarUser">
-                    <a class="dropdown-item" href="{% url 'user:index' %}">USER PAGE</a>
-                    {% if not user.is_authenticated %}
-                        <a class="dropdown-item" href="{% url 'user:signin' %}">LOGIN</a>
-                        <a class="dropdown-item" href="{% url 'user:signup' %}">SIGN UP</a>
-                    {% else %}
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'user:signout' %}">LOGOUT</a>
-                    {% endif %}
-                </div>
+            </li>
+            <li class="nav-item dropdown d-md-none {% if request.resolver_match.namespace == 'user' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'user:signout' %}">
+                    <i class="fa fa-sign-out"></i> Logout
+                </a>
             </li>
         </ul>
     </div>
@@ -38,16 +34,29 @@
     <div class="d-none d-md-block">
         <span style="flex-grow: 1;"></span>
         {% if user.is_authenticated %}
-        <a href="{% url 'user:index' %}" title="{{ user.email }}">
-            <i class="fa fa-user-circle"></i>
-            Hi,
-            {% if user.first_name %}{{ user.first_name }}{% endif %}
-            {% if user.last_name %}{{ user.last_name }}{% endif %}
-            {% if not user.first_name and not user.last_name %}{{ user.username }}{% endif %}
-        </a>
-        <a href="{% url 'user:signout' %}">
-            <button class="btn">Logout</button>
-        </a>
+        
+        <div class="dropdown">
+                <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user-circle fa-lg"></i>                             
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'user:index' %}" title="{{ user.email }}">
+                        Hi, 
+                        <strong>
+                        {% if user.first_name %}{{ user.first_name }}{% endif %}
+                        {% if user.last_name %}{{ user.last_name }}{% endif %}
+                        {% if not user.first_name and not user.last_name %}{{ user.username }}{% endif %}
+                        </strong>
+                        <br>
+                        {{user.email}}
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'user:signout' %}">
+                        <i class="fa fa-sign-out"></i>
+                        Logout
+                    </a>
+                </div>
+            </div>
         {% else %}
         <a href="{% url 'user:signin' %}">
             <button class="btn btn-primary">Login</button>
