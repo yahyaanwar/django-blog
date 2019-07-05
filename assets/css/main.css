@@ -1,8 +1,9 @@
 body {
-    background: #ddd!important;
+    background: #ddd !important;
 }
 
-.container, .navbar {
+.container,
+.navbar {
     box-shadow: 0px 3px 3px 3px #00000012;
 }
 
@@ -11,9 +12,11 @@ body {
     min-height: 80vh;
 }
 
-nav > * {
+nav>* {
     margin: 0 10px;
 }
 
-
-
+li * {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
