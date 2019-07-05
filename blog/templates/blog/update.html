@@ -1,0 +1,17 @@
+{% extends 'base_layout.html' %}
+
+{% block title %}
+    Update Post
+{% endblock title %}
+
+{% block content %}
+<form action="{% url 'blog:update' post.slug %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Update">
+</form>
+<br>
+<a href="{{ back }}">
+    <button>Back</button>
+</a>
+{% endblock content %}
