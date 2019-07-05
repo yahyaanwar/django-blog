@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'user',
     'blog',
 ]
@@ -130,3 +131,5 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'assets')
 
 LOGIN_URL = 'user:signin'
+# Apps settings
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
