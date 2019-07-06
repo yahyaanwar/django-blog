@@ -1,9 +1,12 @@
 $(document).ready(function () {
 
     if ($('form').data('unload') !== undefined) {
-        window.onbeforeunload = function () {
-            return "Are you sure you want to ignore all changes?";
-        }
+        $(window).on('beforeunload', function () {
+            return "Any changes will be lost";
+        });
+        $(document).on("submit", "form", function (event) {
+            $(window).off('beforeunload');
+        });
     }
 
     $('input[name="title"]').focusout(function () {
