@@ -1,4 +1,11 @@
 $(document).ready(function () {
+
+    if ($('form').data('unload') !== undefined) {
+        window.onbeforeunload = function () {
+            return "Are you sure you want to ignore all changes?";
+        }
+    }
+
     $('input[name="title"]').focusout(function () {
         var title = $(this).val()
         if ($('input[name="slug"]').data('edit') == 'true')
