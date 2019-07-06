@@ -19,3 +19,8 @@ body {
 nav > * {
     margin: 0 10px;
 }
+
+.summernoteinplacewidget, .note-editor.note-frame {
+    padding: 0;
+    border: none;
+}
