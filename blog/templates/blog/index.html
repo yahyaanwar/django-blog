@@ -33,7 +33,7 @@ Blog List
             {% endif %}
         </div>
         <span>author : {{post.user_id}} | {{ post.create_at|date:"d M, Y, P" }}</span>
-        <p>{{ post.content|safe }}</p>
+        <p class="text-truncate">{{ post.trContent }}</p>
     </li>
     <br>
     {% endfor %}
