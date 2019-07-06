@@ -26,9 +26,8 @@
         Previous Post
     </a>
     {% endif %}
-    <span style="flex-grow: 1;"></span>
     {% if next_slug %}
-    <a href="{% url 'blog:post_detail' slug=next_slug %}">
+    <a class="ml-auto" href="{% url 'blog:post_detail' slug=next_slug %}">
         Next Post
         <i class="fa fa-arrow-right"></i>
     </a>
