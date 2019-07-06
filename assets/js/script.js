@@ -1,17 +1,13 @@
 $(document).ready(function () {
     $('input[name="title"]').focusout(function () {
         var title = $(this).val()
-        if( $(this).closest("#formBlogCreate").length )
-        {
-            if ($('input[name="slug"]').attr('edit') != 'true')
-                $('input[name="slug"]').val(convertToSlug(title))
-        }
+        if ($('input[name="slug"]').data('edit') == 'true')
+            $('input[name="slug"]').val(convertToSlug(title))
     })
 
-    $('input[name="slug"]').keypress(function () {
-        var editable = $('input[name="slug"]').attr('edit')
-        if( $(this).closest("#formBlogUpdate").length && editable != 'true')
-        {
+    $('input[name="slug"]').keydown(function () {
+        console.log('trigg')
+        if($('input[name="slug"]').data('edit') != 'true'){
             showWarning({
                 title: 'Update Slug',
                 text: `Are you sure to update this slug`,
@@ -21,7 +17,8 @@ $(document).ready(function () {
                     title: 'The Slug Editable',
                     text: `You can update the slug now`,
                     action() {
-                        $('input[name="slug"]').attr('edit','true')
+                        $('input[name="slug"]').data('edit','true')
+                        $('input[name="slug"]').off('keydown')
                     }
                 },
                 cancel: {
@@ -32,10 +29,13 @@ $(document).ready(function () {
                     }
                 },
             });    
-        }else if($(this).closest("#formBlogCreate").length){
-            $(this).attr('edit', 'true')
         }
     })
+
+    if($('input[name="slug"]').val() == '') {
+        $('input[name="slug"]').data('edit', 'true')
+        $('input[name="slug"]').off('keydown')
+    }
 
     $('.btnDeletePost').click(function () {
         var title = $(this).attr('title')
