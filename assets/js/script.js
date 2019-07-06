@@ -1,13 +1,41 @@
 $(document).ready(function () {
     $('input[name="title"]').focusout(function () {
         var title = $(this).val()
-        if ($('input[name="slug"]').attr('edit') != 'true')
+        if ($('input[name="slug"]').data('edit') == 'true')
             $('input[name="slug"]').val(convertToSlug(title))
     })
 
-    $('input[name="slug"]').keypress(function () {
-        $(this).attr('edit', 'true')
+    $('input[name="slug"]').keydown(function () {
+        console.log('trigg')
+        if($('input[name="slug"]').data('edit') != 'true'){
+            showWarning({
+                title: 'Update Slug',
+                text: `Are you sure to update this slug`,
+                confirm_text: 'Yes, update it!',
+                cancel_text: 'No, cancel!',
+                confirm: {
+                    title: 'The Slug Editable',
+                    text: `You can update the slug now`,
+                    action() {
+                        $('input[name="slug"]').data('edit','true')
+                        $('input[name="slug"]').off('keydown')
+                    }
+                },
+                cancel: {
+                    title: 'Cancelled',
+                    text: 'The slug not able to update',
+                    action() {
+                        
+                    }
+                },
+            });    
+        }
     })
+
+    if($('input[name="slug"]').val() == '') {
+        $('input[name="slug"]').data('edit', 'true')
+        $('input[name="slug"]').off('keydown')
+    }
 
     $('.btnDeletePost').click(function () {
         var title = $(this).attr('title')
