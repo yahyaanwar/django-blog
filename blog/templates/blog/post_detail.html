@@ -18,7 +18,7 @@
     {% endif %}
 </div>
 <span>author : {{post.user_id}} | {{ post.create_at|date:"d M, Y, P" }}</span>
-<p>{{post.content}}</p>
+<p>{{post.content|safe}}</p>
 <div class="d-flex align-items-center">
     {% if prev %}
     <a href="{% url 'blog:post_detail' slug=prev.slug %}">
