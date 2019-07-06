@@ -9,7 +9,7 @@ Signup
 <div class="row">
     <div class="col col-md-6 offset-md-3">
         <h1>Signup</h1>
-        <form action="{% url 'user:signup' %}" method="post">
+        <form action="{% url 'user:signup' %}" method="post" data-unload>
             {% csrf_token %}
             {{ form|crispy }}
             <input class="btn btn-primary" type="submit" value="Lets goo!">
