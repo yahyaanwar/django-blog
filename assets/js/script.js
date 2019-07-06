@@ -1,12 +1,40 @@
 $(document).ready(function () {
     $('input[name="title"]').focusout(function () {
         var title = $(this).val()
-        if ($('input[name="slug"]').attr('edit') != 'true')
-            $('input[name="slug"]').val(convertToSlug(title))
+        if( $(this).closest("#formBlogCreate").length )
+        {
+            if ($('input[name="slug"]').attr('edit') != 'true')
+                $('input[name="slug"]').val(convertToSlug(title))
+        }
     })
 
     $('input[name="slug"]').keypress(function () {
-        $(this).attr('edit', 'true')
+        var editable = $('input[name="slug"]').attr('edit')
+        if( $(this).closest("#formBlogUpdate").length && editable != 'true')
+        {
+            showWarning({
+                title: 'Update Slug',
+                text: `Are you sure to update this slug`,
+                confirm_text: 'Yes, update it!',
+                cancel_text: 'No, cancel!',
+                confirm: {
+                    title: 'The Slug Editable',
+                    text: `You can update the slug now`,
+                    action() {
+                        $('input[name="slug"]').attr('edit','true')
+                    }
+                },
+                cancel: {
+                    title: 'Cancelled',
+                    text: 'The slug not able to update',
+                    action() {
+                        
+                    }
+                },
+            });    
+        }else if($(this).closest("#formBlogCreate").length){
+            $(this).attr('edit', 'true')
+        }
     })
 
     $('.btnDeletePost').click(function () {

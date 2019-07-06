@@ -6,7 +6,7 @@
 {% endblock title %}
 
 {% block content %}
-<form action="{% url 'blog:create' %}" method="post">
+<form id="formBlogCreate" action="{% url 'blog:create' %}" method="post">
     {% csrf_token %}
     {{ form|crispy }}
     <input class="btn btn-primary" type="submit" value="Create">
