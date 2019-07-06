@@ -10,7 +10,8 @@ Blog List
     <span style="flex-grow: 1;"></span>
     {% if user.is_authenticated %}
     <a class="btn btn-secondary" href="{% url 'blog:create' %}">
-        Create Post
+        <i class="fa fa-plus"></i>
+        Create New Post
     </a>
     {% endif %}
 </div>
