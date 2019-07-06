@@ -8,9 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}Dev kids blogs{% endblock title %}</title>
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    {% comment %} lib/css {% endcomment %}
     <link rel="stylesheet" href="{% static 'lib/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'lib/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/css/summernote-bs4.min.css' %}">
+    {% comment %} lib/js {% endcomment %}
+    <script src="{% static 'lib/js/promise-polyfill.min.js' %}"></script>
+    <script src="{% static 'lib/js/jquery.min.js' %}"></script>
+    <script src="{% static 'lib/js/popper.min.js' %}"></script>
+    <script src="{% static 'lib/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'lib/js/sweetalert2.min.js' %}"></script>
+    <script src="{% static 'lib/js/summernote-bs4.min.js' %}"></script>
+    {% comment %} css {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 
 <body>
@@ -22,10 +32,7 @@
             {% endblock content %}
         </div>
     </div>
-    <script src="{% static 'lib/js/promise-polyfill.min.js' %}"></script>
-    <script src="{% static 'lib/js/jquery.min.js' %}"></script>
-    <script src="{% static 'lib/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'lib/js/sweetalert2.min.js' %}"></script>
+    {% comment %} js {% endcomment %}
     <script src="{% static 'js/script.js' %}"></script>
 </body>
 

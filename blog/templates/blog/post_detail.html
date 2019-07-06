@@ -13,7 +13,7 @@
         </a>
     </div>
     <span>author : {{post.user_id}} | {{ post.create_at|date:"d M, Y, P" }}</span>
-    <p>{{post.content}}</p>
+    <p>{{post.content|safe}}</p>
     {% if user.is_authenticated and user == post.user_id %}
         <a href="{% url 'blog:update' post.slug %}" type="button" class="btn btn-warning btn-sm">Edit</a>
         <button type="button" class="btn btn-danger btn-sm btnDeletePost" title="{{post.title}}" url="{% url 'blog:delete' post.slug %}">Delete</button>

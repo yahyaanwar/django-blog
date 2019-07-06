@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_summernote',
     'crispy_forms',
     'user',
     'blog',
@@ -127,9 +128,97 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'assets'),
 )
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'assets')
 
 LOGIN_URL = 'user:signin'
 # Apps settings
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+SUMMERNOTE_THEME = 'bs4'
+SUMMERNOTE_CONFIG = {
+    # Set it as False to use SummernoteInplaceWidget by default - no iframe mode
+    # In this case, you have to load Bootstrap/jQuery stuff by manually.
+    # Use this when you're already using Bootstraip/jQuery based themes.
+    'iframe': False,
+
+    # You can put custom Summernote settings
+    'summernote': {
+        # As an example, using Summernote Air-mode
+        'airMode': True,
+
+        # Change editor size
+        'width': '100%',
+        'height': '480',
+
+        # Use proper language setting automatically (default)
+        # 'lang': None,
+
+        # Or, set editor language/locale forcely
+        # 'lang': 'ko-KR',
+
+        # You can also add custom settings for external plugins
+        'print': {
+            'stylesheetUrl': '/assets/css/printable.css',
+        },
+    },
+
+    # Need authentication while uploading attachments.
+    'attachment_require_authentication': True,
+
+    # Set `upload_to` function for attachments.
+    # 'attachment_upload_to': my_custom_upload_to_func(),
+
+    # Set custom storage class for attachments.
+    # 'attachment_storage_class': 'my.custom.storage.class.name',
+
+    # Set custom model for attachments (default: 'django_summernote.Attachment')
+    # must inherit 'django_summernote.AbstractAttachment'
+    # 'attachment_model': 'my.custom.attachment.model',
+
+    # You can disable attachment feature.
+    'disable_attachment': False,
+
+    # Set `True` to return attachment paths in absolute URIs.
+    'attachment_absolute_uri': False,
+
+    # You can add custom css/js for SummernoteWidget.
+    'css': (
+    ),
+    'js': (
+    ),
+
+    # You can also add custom css/js for SummernoteInplaceWidget.
+    # !!! Be sure to put {{ form.media }} in template before initiate summernote.
+    'css_for_inplace': (
+    ),
+    'js_for_inplace': (
+    ),
+
+    # Codemirror as codeview
+    # If any codemirror settings are defined, it will include codemirror files automatically.
+    'css': (
+        '//cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/theme/monokai.min.css',
+    ),
+    'codemirror': {
+        'mode': 'htmlmixed',
+        'lineNumbers': 'true',
+
+        # You have to include theme file in 'css' or 'css_for_inplace' before using it.
+        'theme': 'monokai',
+    },
+
+    # Lazy initialize
+    # If you want to initialize summernote at the bottom of page, set this as True
+    # and call `initSummernote()` on your page.
+    'lazy': False,
+
+    # To use external plugins,
+    # Include them within `css` and `js`.
+    'js': {
+        # '/some_static_folder/summernote-ext-print.js',
+        # '//somewhere_in_internet/summernote-plugin-name.js',
+    },
+}
