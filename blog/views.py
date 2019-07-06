@@ -14,7 +14,7 @@ def post_detail(request,slug):
     post = get_object_or_404(Post,slug=slug)
 
     try:
-        prev_post = post.get_previous_by_update_at()
+        prev_post = post.get_previous_by_create_at()
         prev_data = {
             'title': prev_post.title,
             'slug': prev_post.slug
@@ -23,7 +23,7 @@ def post_detail(request,slug):
         prev_data = False
 
     try:
-        next_post = post.get_next_by_update_at()
+        next_post = post.get_next_by_create_at()
         next_data = {
             'title': next_post.title,
             'slug': next_post.slug
