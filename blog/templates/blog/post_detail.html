@@ -5,19 +5,20 @@
 {% endblock title %}
 
 {% block content %}
-    <div style="display: flex; align-items: center;">
-        <h1>{{post.title}}</h1>
-        <span style="flex-grow: 1;"></span>
-        <a class="btn" href="{% url 'blog:index' %}">
-            Back
-        </a>
-    </div>
-    <span>author : {{post.user_id}} | {{ post.create_at|date:"d M, Y, P" }}</span>
-    <p>{{post.content|safe}}</p>
+<div class="d-flex align-items-center">
+    <h1> {{ post.title }}</h1>
     {% if user.is_authenticated and user == post.user_id %}
-        <a href="{% url 'blog:update' post.slug %}" type="button" class="btn btn-warning btn-sm">Edit</a>
-        <button type="button" class="btn btn-danger btn-sm btnDeletePost" title="{{post.title}}" url="{% url 'blog:delete' post.slug %}">Delete</button>
+    <a href="{% url 'blog:update' post.slug %}" class="btn btn-sm btn-outline-warning ml-auto" title="edit">
+        <i class="fa fa-pencil"></i>
+    </a>
+    <button class="btn btn-outline-danger btn-sm btnDeletePost ml-2" title="delete" data-title="{{ post.title }}"
+        data-url="{% url 'blog:delete' post.slug %}">
+        <i class="fa fa-trash"></i>
+    </button>
     {% endif %}
+</div>
+<span>author : {{post.user_id}} | {{ post.create_at|date:"d M, Y, P" }}</span>
+<p>{{post.content}}</p>
 <div style="display: flex; align-items: center;">
     {% if prev_slug %}
     <a href="{% url 'blog:post_detail' slug=prev_slug %}">

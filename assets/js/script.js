@@ -38,8 +38,8 @@ $(document).ready(function () {
     }
 
     $('.btnDeletePost').click(function () {
-        var title = $(this).attr('title')
-        var url = $(this).attr('url')
+        var title = $(this).data('title')
+        var url = $(this).data('url')
         showWarning({
             title: 'Delete Post',
             text: `Are you sure to delete ${title}`,
