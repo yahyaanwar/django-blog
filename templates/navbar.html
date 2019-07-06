@@ -78,11 +78,11 @@
                 </div>
             </div>
         {% else %}
-        <a href="{% url 'user:signin' %}">
-            <button class="btn btn-primary">Login</button>
+        <a class="btn btn-primary" href="{% url 'user:signin' %}">
+            Login
         </a>
-        <a href="{% url 'user:signup' %}">
-            <button class="btn">Signup</button>
+        <a class="btn btn-secondary" href="{% url 'user:signup' %}">
+            Signup
         </a>
         {% endif %}
     </div>
