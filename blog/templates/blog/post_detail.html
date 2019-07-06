@@ -8,8 +8,8 @@
     <div style="display: flex; align-items: center;">
         <h1>{{post.title}}</h1>
         <span style="flex-grow: 1;"></span>
-        <a href="{% url 'blog:index' %}">
-            <button class="btn">Back</button>
+        <a class="btn" href="{% url 'blog:index' %}">
+            Back
         </a>
     </div>
     <span>author : {{post.user_id}} | {{ post.create_at|date:"d M, Y, P" }}</span>

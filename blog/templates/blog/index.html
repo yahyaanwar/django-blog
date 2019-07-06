@@ -9,8 +9,8 @@ Blog List
     <h1>Blog List</h1>
     <span style="flex-grow: 1;"></span>
     {% if user.is_authenticated %}
-    <a href="{% url 'blog:create' %}">
-        <button class="btn">Create Post</button>
+    <a class="btn btn-secondary" href="{% url 'blog:create' %}">
+        Create Post
     </a>
     {% endif %}
 </div>

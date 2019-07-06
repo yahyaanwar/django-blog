@@ -10,9 +10,10 @@
     {% csrf_token %}
     {{ form|crispy }}
     <input class="btn btn-primary" type="submit" value="Update">
+    <a class="btn" href="{{ back }}">
+        Back
+    </a>
 </form>
 <br>
-<a href="{{ back }}">
-    <button class="btn">Back</button>
-</a>
+
 {% endblock content %}

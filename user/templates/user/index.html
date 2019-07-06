@@ -12,31 +12,31 @@ hello from /user
 
 <div style="display: flex; align-items: center;">
     {% if user.is_superuser %}
-    <a href="{% url 'index' %}admin/">
-        <button class="btn btn-primary">Open admin page</button>
+    <a class="btn btn-primary" href="{% url 'index' %}admin/">
+        Open admin page
     </a>
     {% else %}
-    <a href="{% url 'blog:index' %}">
-        <button class="btn btn-primary">Open blog page</button>
+    <a class="btn btn-primary" href="{% url 'blog:index' %}">
+        Open blog page
     </a>
     {% endif %}
     <span style="margin: 0 10px;">
         or
     </span>
-    <a href="{% url 'user:signout' %}">
-        <button class="btn">Logout</button>
+    <a class="btn btn-secondary" href="{% url 'user:signout' %}">
+        Logout
     </a>
 </div>
 {% else %}
 <div style="display: flex; align-items: center;">
-    <a href="{% url 'user:signin' %}">
-        <button class="btn">Login</button>
+    <a class="btn btn-secondary" href="{% url 'user:signin' %}">
+        Login
     </a>
     <span style="margin: 0 10px;">
         or
     </span>
-    <a href="{% url 'user:signup'%}">
-        <button class="btn">Sign up</button>
+    <a class="btn btn-secondary" href="{% url 'user:signup'%}">
+        Sign up
     </a>
 </div>
 {% endif %}
