@@ -14,19 +14,27 @@ def post_detail(request,slug):
     post = get_object_or_404(Post,slug=slug)
 
     try:
-        prev_slug = post.get_previous_by_update_at().slug
+        prev_post = post.get_previous_by_update_at()
+        prev_data = {
+            'title': prev_post.title,
+            'slug': prev_post.slug
+        }
     except Post.DoesNotExist:
-        prev_slug = False
+        prev_data = False
 
     try:
-        next_slug = post.get_next_by_update_at().slug
+        next_post = post.get_next_by_update_at()
+        next_data = {
+            'title': next_post.title,
+            'slug': next_post.slug
+        }
     except Post.DoesNotExist:
-        next_slug = False
+        next_data = False
 
     return render(request, 'blog/post_detail.html',{
         'post':post, 
-        'prev_slug': prev_slug, 
-        'next_slug': next_slug
+        'prev': prev_data, 
+        'next': next_data
     })
 
 @login_required

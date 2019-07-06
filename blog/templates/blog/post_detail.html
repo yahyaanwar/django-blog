@@ -5,7 +5,7 @@
 {% endblock title %}
 
 {% block content %}
-<div class="d-flex align-items-center">
+<div class="d-md-flex align-items-center">
     <h1> {{ post.title }}</h1>
     {% if user.is_authenticated and user == post.user_id %}
     <a href="{% url 'blog:update' post.slug %}" class="btn btn-sm btn-outline-warning ml-auto" title="edit">
@@ -19,16 +19,21 @@
 </div>
 <span>author : {{post.user_id}} | {{ post.create_at|date:"d M, Y, P" }}</span>
 <p>{{post.content}}</p>
-<div style="display: flex; align-items: center;">
-    {% if prev_slug %}
-    <a href="{% url 'blog:post_detail' slug=prev_slug %}">
+<div class="d-flex align-items-center">
+    {% if prev %}
+    <a href="{% url 'blog:post_detail' slug=prev.slug %}">
         <i class="fa fa-arrow-left"></i>
-        Previous Post
+    </a>
+    <a href="{% url 'blog:post_detail' slug=prev.slug %}" class="text-truncate ml-1 mr-4" style="width: 50%;">
+        {{ prev.title }}
     </a>
     {% endif %}
-    {% if next_slug %}
-    <a class="ml-auto" href="{% url 'blog:post_detail' slug=next_slug %}">
-        Next Post
+    <span class=""></span>
+    {% if next %}
+    <a href="{% url 'blog:post_detail' slug=next.slug %}" class="text-truncate text-right ml-auto mr-1" style="width: 50%;">
+        {{ next.title }}
+    </a>
+    <a href="{% url 'blog:post_detail' slug=next.slug %}">
         <i class="fa fa-arrow-right"></i>
     </a>
     {% endif %}

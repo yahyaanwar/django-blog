@@ -16,11 +16,6 @@ body {
     min-height: 80vh;
 }
 
-nav>* {
+nav > * {
     margin: 0 10px;
-}
-
-li * {
-    text-overflow: ellipsis;
-    overflow: hidden;
 }

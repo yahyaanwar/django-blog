@@ -18,7 +18,7 @@ Blog List
 <ul class="list-group">
     {% for post in post_list %}
     <li class="list-group-item my-2">
-        <div class="d-flex align-items-center">
+        <div class="d-md-flex align-items-center">
             <a href="{% url 'blog:post_detail' post.slug %}">
                 <h3> {{ post.title }}</h3>
             </a>
