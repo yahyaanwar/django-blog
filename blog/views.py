@@ -10,7 +10,7 @@ from user . models import CustomUser
 def index(request,page=1):
     post_list = Post.objects.order_by('-create_at').all()
     
-    paginator = Paginator(post_list, 1)
+    paginator = Paginator(post_list, 5)
 
     try:
         posts = paginator.page(page)
