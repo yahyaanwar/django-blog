@@ -9,14 +9,22 @@ $(document).ready(function () {
         });
     }
 
+    $('input[name="title"]').focusin(function () {
+        var title = $(this).val()
+        if ($('input[name="slug"]').val() && $('input[name="slug"]').val() != convertToSlug(title)) {
+            $('input[name="slug"]').data('autofill', 'disabled')
+        } else {
+            $('input[name="slug"]').data('autofill', 'enabled')
+        }
+    })
+
     $('input[name="title"]').focusout(function () {
         var title = $(this).val()
-        if ($('input[name="slug"]').data('edit') == 'true')
+        if ($('input[name="slug"]').data('edit') == 'true' && $('input[name="slug"]').data('autofill') != 'disabled')
             $('input[name="slug"]').val(convertToSlug(title))
     })
 
     $('input[name="slug"]').keydown(function () {
-        console.log('trigg')
         if($('input[name="slug"]').data('edit') != 'true'){
             showWarning({
                 title: 'Update Slug',
