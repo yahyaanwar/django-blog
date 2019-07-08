@@ -1,14 +1,33 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib.auth.decorators import login_required
 from django.template.defaultfilters import slugify
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from . models import Post
 from . forms import PostForm
 from user . models import CustomUser
 
-def index(request):
-    post_list = Post.objects.order_by('create_at').all()
-    return render(request, 'blog/index.html', {'post_list':post_list})
+def index(request,page=1):
+    post_list = Post.objects.order_by('-create_at').all()
+    
+    paginator = Paginator(post_list, 5)
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+
+        posts = paginator.page(paginator.num_pages)
+    content = {
+        'post_list':posts,
+        'pg_range':{
+            'left': posts.number-3,
+            'right':posts.number+3
+        },
+    }
+    return render(request, 'blog/index.html', content)
+    
 
 def post_detail(request,slug):
     post = get_object_or_404(Post,slug=slug)
