@@ -15,7 +15,9 @@
 {% endblock %}
 {% render_breadcrumbs %}
 
+{% if post.thumb %}
 <img src="{{ post.thumb.url }}" alt="{{ post.thumb }}" width="100%">
+{% endif %}
 <div class="d-md-flex align-items-center mt-5">
     <h1> {{ post.title }}</h1>
     {% if user.is_authenticated and user == post.user_id %}

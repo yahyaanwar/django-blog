@@ -30,7 +30,9 @@ Blog List
         <div class="row align-items-center">
             <div class="col-lg-3 col-md-4 mb-3 mb-md-0">
                 <a href="{% url 'blog:post_detail' post.slug %}">
+                    {% if post.thumb %}
                     <img src="{{ post.thumb.url }}" class="img-thumbnail" alt="{{ post.thumb }}" width="100%">
+                    {% endif %}
                 </a>
             </div>
             <div class="col-lg-9 col-md-8">
