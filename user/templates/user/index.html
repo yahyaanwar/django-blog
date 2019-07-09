@@ -1,10 +1,19 @@
 {% extends 'base_layout.html' %}
+{% load django_bootstrap_breadcrumbs %}
 
 {% block title %}
 hello from /user
 {% endblock title %}
 
 {% block content %}
+
+{% block breadcrumbs %}
+    {% clear_breadcrumbs %}
+    {% breadcrumb "Home" "/" %}
+    {% breadcrumb "User" "blog:user" %}
+{% endblock %}
+{% render_breadcrumbs %}
+
 <h1>hello from /user</h1>
 {% if user.is_authenticated %}
 <pre>you have username : {{ user.username }}</pre>

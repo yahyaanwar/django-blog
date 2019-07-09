@@ -24,3 +24,7 @@ nav > * {
     padding: 0;
     border: none;
 }
+
+.breadcrumb li{
+    padding-right: 5px;
+}

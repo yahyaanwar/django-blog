@@ -1,10 +1,19 @@
 {% extends 'base_layout.html' %}
+{% load django_bootstrap_breadcrumbs %}
 
 {% block title %}
 Blog List
 {% endblock title %}
 
 {% block content %}
+
+{% block breadcrumbs %}
+    {% clear_breadcrumbs %}
+    {% breadcrumb "Home" "/" %}
+    {% breadcrumb "Blog" "blog:index" %}
+{% endblock %}
+{% render_breadcrumbs %}
+
 <div style="display: flex; align-items: center;">
     <h1>Blog List</h1>
     <span style="flex-grow: 1;"></span>
