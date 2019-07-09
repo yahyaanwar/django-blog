@@ -1,10 +1,20 @@
 {% extends 'base_layout.html' %}
+{% load django_bootstrap_breadcrumbs %}
 
 {% block title %}
 {{post.title}}
 {% endblock title %}
 
 {% block content %}
+
+{% block breadcrumbs %}
+    {% clear_breadcrumbs %}
+    {% breadcrumb "Home" "/" %}
+    {% breadcrumb "Blog" "blog:index" %}
+    {% breadcrumb post.title "blog:post_detail" slug=post.slug %}
+{% endblock %}
+{% render_breadcrumbs %}
+
 <div class="d-md-flex align-items-center">
     <h1> {{ post.title }}</h1>
     {% if user.is_authenticated and user == post.user_id %}
