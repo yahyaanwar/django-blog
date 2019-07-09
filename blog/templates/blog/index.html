@@ -1,4 +1,5 @@
 {% extends 'base_layout.html' %}
+{% load static from staticfiles %}
 {% load django_bootstrap_breadcrumbs %}
 
 {% block title %}
@@ -14,7 +15,7 @@ Blog List
 {% endblock %}
 {% render_breadcrumbs %}
 
-<div style="display: flex; align-items: center;">
+<div class="d-flex align-items-center">
     <h1>Blog List</h1>
     <span style="flex-grow: 1;"></span>
     {% if user.is_authenticated %}
@@ -26,71 +27,85 @@ Blog List
 </div>
 <ul class="list-group">
     {% for post in post_list %}
-    <li class="list-group-item my-2">
-        <div class="d-md-flex align-items-center">
-            <a href="{% url 'blog:post_detail' post.slug %}">
-                <h3> {{ post.title }}</h3>
-            </a>
-            {% if user.is_authenticated and user == post.user_id %}
-            <a href="{% url 'blog:update' post.slug %}" class="btn btn-sm btn-outline-warning ml-auto" title="edit">
-                <i class="fa fa-pencil"></i>
-            </a>
-            <button class="btn btn-outline-danger btn-sm btnDeletePost ml-2" title="delete" data-title="{{ post.title }}"
-                data-url="{% url 'blog:delete' post.slug %}">
-                <i class="fa fa-trash"></i>
-            </button>
-            {% endif %}
+    <li class="list-group-item my-2 border-0">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-4 mb-3 mb-md-0">
+                <a href="{% url 'blog:post_detail' post.slug %}">
+                    {% if post.thumb %}
+                    <img src="{{ post.thumb.url }}" class="img-thumbnail" alt="{{ post.thumb }}" width="100%">
+                    {% else %}
+                    <img src="{% static 'img/no-image.png' %}" class="img-thumbnail" alt="no image" width="100%">
+                    {% endif %}
+                </a>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="d-md-flex align-items-center">
+                    <a href="{% url 'blog:post_detail' post.slug %}">
+                        <h3> {{ post.title }}</h3>
+                    </a>
+                    {% if user.is_authenticated and user == post.user_id %}
+                    <a href="{% url 'blog:update' post.slug %}" class="btn btn-sm btn-outline-warning ml-auto"
+                        title="edit">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <button class="btn btn-outline-danger btn-sm btnDeletePost ml-2" title="delete"
+                        data-title="{{ post.title }}" data-url="{% url 'blog:delete' post.slug %}">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                    {% endif %}
+                </div>
+                <span>author : {{post.user_id}} | {{ post.create_at|date:"d M, Y, P" }}</span>
+                <p class="text-truncate">{{ post.trContent|safe }}</p>
+            </div>
         </div>
-        <span>author : {{post.user_id}} | {{ post.create_at|date:"d M, Y, P" }}</span>
-        <p class="text-truncate">{{ post.trContent|safe }}</p>
     </li>
     <br>
     {% endfor %}
 </ul>
-    {% if post_list.has_other_pages %}
-    <nav aria-label="...">
-        <ul class="pagination">
-            <li class="page-item {% if not post_list.has_previous %} disabled {% endif %}">
-                {% if post_list.has_previous %}
-                    <a class="page-link" href="{% url 'blog:pagination' post_list.previous_page_number %}">
-                        <i class="fa fa-arrow-left"></i> Previous
-                    </a>
-                {% else %}
-                    <span class="page-link">
-                        <i class="fa fa-arrow-left"></i> Previous
-                    </span>
-                {% endif %}
-            </li>
-            {% for i in post_list.paginator.page_range %}
-                {% if post_list.number == i %}
-                    <li class="page-item active">
-                        <span class="page-link">
-                            {{ i }}<span class="sr-only">(current)</span>
-                        </span>
-                    </li>
-                    {{post_list.range_left}}
-                {% elif i > pg_range.left and i < pg_range.right or post_list.paginator.num_pages == i or i == 1%}
-                    <li class="page-item">
-                        <a class="page-link" href="{% url 'blog:pagination' i  %}">{{ i }}</a>
-                    </li>
-                {% elif pg_range.left > 1 and i >= pg_range.left or pg_range.right < post_list.paginator.num_pages and i <= pg_range.right%}
-                <li class="page-item disabled">
-                    <span class="page-link">...</span>
-                </li>
-                {% endif %}
-            {% endfor %}
-            <li class="page-item {% if not post_list.has_next %} disabled {% endif %}">
-                {% if post_list.has_next %}
-                    <a class="page-link" href="{% url 'blog:pagination' post_list.next_page_number %}">
-                        Next <i class="fa fa-arrow-right"></i>
-                    </a>
-                {% else %}
-                    <span class="page-link">
-                        Next <i class="fa fa-arrow-right"></i>
-                    </span>
-                {% endif %}
-            </li>
-        </ul>
-    </nav>
-    {% endif %}    
+{% if post_list.has_other_pages %}
+<nav aria-label="...">
+    <ul class="pagination">
+        <li class="page-item {% if not post_list.has_previous %} disabled {% endif %}">
+            {% if post_list.has_previous %}
+            <a class="page-link" href="{% url 'blog:pagination' post_list.previous_page_number %}">
+                <i class="fa fa-arrow-left"></i> Previous
+            </a>
+            {% else %}
+            <span class="page-link">
+                <i class="fa fa-arrow-left"></i> Previous
+            </span>
+            {% endif %}
+        </li>
+        {% for i in post_list.paginator.page_range %}
+        {% if post_list.number == i %}
+        <li class="page-item active">
+            <span class="page-link">
+                {{ i }}<span class="sr-only">(current)</span>
+            </span>
+        </li>
+        {{post_list.range_left}}
+        {% elif i > pg_range.left and i < pg_range.right or post_list.paginator.num_pages == i or i == 1%}
+        <li class="page-item">
+            <a class="page-link" href="{% url 'blog:pagination' i  %}">{{ i }}</a>
+        </li>
+        {% elif pg_range.left > 1 and i >= pg_range.left or pg_range.right < post_list.paginator.num_pages and i <= pg_range.right%}
+        <li class="page-item disabled">
+            <span class="page-link">...</span>
+        </li>
+        {% endif %}
+        {% endfor %}
+        <li class="page-item {% if not post_list.has_next %} disabled {% endif %}">
+            {% if post_list.has_next %}
+            <a class="page-link" href="{% url 'blog:pagination' post_list.next_page_number %}">
+                Next <i class="fa fa-arrow-right"></i>
+            </a>
+            {% else %}
+            <span class="page-link">
+                Next <i class="fa fa-arrow-right"></i>
+            </span>
+            {% endif %}
+        </li>
+    </ul>
+</nav>
+{% endif %}
 {% endblock content %}

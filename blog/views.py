@@ -58,7 +58,7 @@ def post_detail(request,slug):
 
 @login_required
 def create(request):
-    post_form = PostForm(request.POST or None)
+    post_form = PostForm(request.POST or None, request.FILES or None)
     if request.method == 'POST':
         if post_form.is_valid():
             post = post_form.save(commit=False)
@@ -72,7 +72,7 @@ def update(request,slug):
     post = get_object_or_404(Post,slug=slug)
     url_referer = (request.META.get('HTTP_REFERER'), reverse('blog:index'))[request.META.get('HTTP_REFERER') == None]
     if request.user == post.user_id:
-        post_form = PostForm(request.POST or None, instance= post)
+        post_form = PostForm(request.POST or None, request.FILES or None, instance=post)
         if request.method == 'POST':
             if post_form.is_valid():
                 post_form.save()
