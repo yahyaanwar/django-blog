@@ -19,7 +19,7 @@ hello from /user
 <pre>you have username : {{ user.username }}</pre>
 
 
-<div style="display: flex; align-items: center;">
+<div class="d-flex align-items-center">
     {% if user.is_superuser %}
     <a class="btn btn-primary" href="{% url 'index' %}admin/">
         Open admin page
@@ -37,7 +37,7 @@ hello from /user
     </a>
 </div>
 {% else %}
-<div style="display: flex; align-items: center;">
+<div class="d-flex align-items-center">
     <a class="btn btn-secondary" href="{% url 'user:signin' %}">
         Login
     </a>
