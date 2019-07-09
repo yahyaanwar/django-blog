@@ -17,7 +17,7 @@
 {% endblock %}
 {% render_breadcrumbs %}
 
-<form action="{% url 'blog:update' post.slug %}" method="post" data-unload>
+<form action="{% url 'blog:update' post.slug %}" method="post" enctype="multipart/form-data" data-unload>
     {% csrf_token %}
     {{ form|crispy }}
     <input class="btn btn-primary" type="submit" value="Update">
