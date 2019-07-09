@@ -1,11 +1,21 @@
 {% extends 'base_layout.html' %}
 {% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
 
 {% block title %}
     Create New Post
 {% endblock title %}
 
 {% block content %}
+
+{% block breadcrumbs %}
+    {% clear_breadcrumbs %}
+    {% breadcrumb "Home" "index" %}
+    {% breadcrumb "Blog" "blog:index" %}
+    {% breadcrumb "Create" "blog:create" %}
+{% endblock %}
+{% render_breadcrumbs %}
+
 <form action="{% url 'blog:create' %}" method="post" data-unload>
     {% csrf_token %}
     {{ form|crispy }}

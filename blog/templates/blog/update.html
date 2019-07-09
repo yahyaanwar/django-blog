@@ -1,11 +1,22 @@
 {% extends 'base_layout.html' %}
 {% load crispy_forms_tags %}
+{% load django_bootstrap_breadcrumbs %}
 
 {% block title %}
     Update Post
 {% endblock title %}
 
 {% block content %}
+
+{% block breadcrumbs %}
+    {% clear_breadcrumbs %}
+    {% breadcrumb "Home" "index" %}
+    {% breadcrumb "Blog" "blog:index" %}
+    {% breadcrumb post.title "blog:post_detail" slug=post.slug %}
+    {% breadcrumb "Update" "blog:update" slug=post.slug %}
+{% endblock %}
+{% render_breadcrumbs %}
+
 <form action="{% url 'blog:update' post.slug %}" method="post" data-unload>
     {% csrf_token %}
     {{ form|crispy }}
