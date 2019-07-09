@@ -9,7 +9,7 @@ class Post(models.Model):
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
     slug = models.SlugField(max_length=100, unique=True)
-    thumb = models.ImageField('default.png', blank=True)
+    thumb = models.ImageField(blank=True)
     user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
     def __str__(self):

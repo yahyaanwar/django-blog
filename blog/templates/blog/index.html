@@ -1,4 +1,5 @@
 {% extends 'base_layout.html' %}
+{% load static from staticfiles %}
 {% load django_bootstrap_breadcrumbs %}
 
 {% block title %}
@@ -32,6 +33,8 @@ Blog List
                 <a href="{% url 'blog:post_detail' post.slug %}">
                     {% if post.thumb %}
                     <img src="{{ post.thumb.url }}" class="img-thumbnail" alt="{{ post.thumb }}" width="100%">
+                    {% else %}
+                    <img src="{% static 'img/no-image.png' %}" class="img-thumbnail" alt="no image" width="100%">
                     {% endif %}
                 </a>
             </div>
