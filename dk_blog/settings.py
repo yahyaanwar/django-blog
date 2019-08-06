@@ -82,7 +82,9 @@ WSGI_APPLICATION = 'dk_blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {}
+DATABASES = {
+
+}
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
